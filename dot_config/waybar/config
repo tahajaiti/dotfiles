@@ -1,0 +1,266 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "width": 1920,
+  "spacing": 4,
+  "margin-top": 0,
+  "margin-left": 16,
+  "margin-right": 16,
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/submap",
+    "custom/media"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "custom/updates",
+    "custom/discord",
+    "custom/clipboard",
+    "network#speed",
+    "memory",
+    "disk",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "battery",
+    "clock",
+    "custom/power"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "active": "•",
+      "default": "◦"
+    },
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "1": []
+    },
+    "all-outputs": true
+  },
+  "hyprland/submap": {
+    "format": "<span foreground='#ffaa00'>󰘶</span> {}",
+    "tooltip": true,
+    "tooltip-format": "Submap: {}"
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 60,
+    "icon": true,
+    "icon-size": 16,
+    "separate-outputs": true,
+    "rewrite": {
+      "": "TERMINAL:// ~"
+    },
+    "on-click": "~/.config/waybar/scripts/notification-control.sh dismiss",
+    "on-click-right": "~/.config/waybar/scripts/notification-control.sh restore",
+    "tooltip-format": "{title}\n\nClick: Dismiss notifications\nRight-click: Restore notifications"
+  },
+  "clock": {
+    "format": "<span foreground='#ff0055'>󰥔</span> {:%H:%M}",
+    "format-alt": "<span foreground='#ff0055'>󰃭</span> {:%Y-%m-%d %H:%M:%S}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "interval": 1,
+    "on-click-right": "alacritty --class calendar,calendar -e ~/.config/waybar/scripts/calendar.sh",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#00e6e6'><b>{}</b></span>",
+        "days": "<span color='#ffffff'><b>{}</b></span>",
+        "weeks": "<span color='#bd00ff'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffaa00'><b>{}</b></span>",
+        "today": "<span color='#ff0055'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "ADP1",
+    "full-at": 95,
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span foreground='#bd00ff'>{icon}</span> {capacity}%",
+    "format-charging": "<span foreground='#00e6e6'>󰂄</span> {capacity}%",
+    "format-plugged": "<span foreground='#00e6e6'>󰚥</span> {capacity}%",
+    "format-full": "<span foreground='#00e6e6'>󰁹</span> {capacity}%",
+    "format-alt": "<span foreground='#bd00ff'>{icon}</span> {time}",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "{capacity}% • {time} • {power}W\nHealth: {health}%\nCycles: {cycles}",
+    "interval": 30,
+    "on-click": "~/.config/waybar/scripts/battery-info.sh"
+  },
+  "network": {
+    "format-wifi": "<span foreground='#00e6e6'>󰖩</span> {signalStrength}%",
+    "format-ethernet": "<span foreground='#00e6e6'>󰈀</span>",
+    "format-disconnected": "<span foreground='#ff0055'>󰖪</span>",
+    "format-linked": "<span foreground='#ffaa00'>󰈁</span>",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}\nGateway: {gwaddr}\nFrequency: {frequency}MHz",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}\nGateway: {gwaddr}",
+    "tooltip-format-disconnected": "Network disconnected",
+    "interval": 5,
+    "on-click-right": "nm-connection-editor"
+  },
+  "network#speed": {
+    "format-wifi": "<span foreground='#ff0055'>󰇚</span> {bandwidthDownBytes}",
+    "format-ethernet": "<span foreground='#ff0055'>󰇚</span> {bandwidthDownBytes}",
+    "format-disconnected": "",
+    "tooltip-format": "↓ {bandwidthDownBytes} • ↑ {bandwidthUpBytes}",
+    "interval": 1,
+    "min-length": 8
+  },
+  "memory": {
+    "interval": 5,
+    "format": "<span foreground='#bd00ff'>󰍛</span> {percentage}%",
+    "format-alt": "<span foreground='#bd00ff'>󰘚</span> {used:0.1f}GB",
+    "tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB ({percentage}%)\nAvailable: {avail:0.1f}GB\nSwap: {swapUsed:0.1f}GB / {swapTotal:0.1f}GB ({swapPercentage}%)",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "on-click": "alacritty --class btop,btop -e btop"
+  },
+  "disk": {
+    "interval": 30,
+    "format": "<span foreground='#ffaa00'>󰋊</span> {percentage_used}%",
+    "format-alt": "<span foreground='#ffaa00'>󰋊</span> {free}",
+    "path": "/",
+    "tooltip-format": "Used: {used} / {total} ({percentage_used}%)\nFree: {free} ({percentage_free}%)\nMount: {path}",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "on-click": "~/.config/waybar/scripts/disk-info.sh"
+  },
+  "bluetooth": {
+    "format": "<span foreground='#00e6e6'>{icon}</span>",
+    "format-disabled": "<span foreground='#666666'>󰂲</span>",
+    "format-off": "<span foreground='#666666'>󰂲</span>",
+    "format-connected": "<span foreground='#bd00ff'>{icon}</span> {num_connections}",
+    "format-connected-battery": "<span foreground='#bd00ff'>{icon}</span> {device_battery_percentage}%",
+    "format-icons": {
+      "enabled": "󰂯",
+      "disabled": "󰂲",
+      "connected": "󰂱"
+    },
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} device(s) connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} device(s) connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "~/.config/waybar/scripts/bluetooth-manager.sh",
+    "on-click-right": "~/.config/waybar/scripts/bluetooth-toggle.sh"
+  },
+  "pulseaudio": {
+    "format": "<span foreground='#bd00ff'>{icon}</span> {volume}%",
+    "format-muted": "<span foreground='#666666'>󰝟</span>",
+    "format-bluetooth": "<span foreground='#00e6e6'>{icon}</span> {volume}%",
+    "format-bluetooth-muted": "<span foreground='#666666'>󰟎</span>",
+    "format-source": "<span foreground='#1db954'>󰍬</span> {volume}%",
+    "format-source-muted": "<span foreground='#666666'>󰍭</span>",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󱡏",
+      "headset": "󰋎",
+      "phone": "󰏲",
+      "portable": "󰦧",
+      "car": "󰄋",
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "scroll-step": 2,
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-middle": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "~/.config/waybar/scripts/volume.sh up",
+    "on-scroll-down": "~/.config/waybar/scripts/volume.sh down",
+    "tooltip-format": "Volume: {volume}%\nDevice: {desc}\n\nMiddle-click: Toggle mic\nScroll: Adjust volume",
+    "max-volume": 150
+  },
+  "custom/media": {
+    "format": "<span foreground='#1db954'>󰓇</span> {}",
+    "max-length": 50,
+    "interval": 1,
+    "exec": "~/.config/waybar/scripts/media-player.sh",
+    "exec-if": "pgrep -x spotify || pgrep -x brave",
+    "return-type": "json",
+    "escape": true,
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+    "on-scroll-up": "playerctl volume 0.05+",
+    "on-scroll-down": "playerctl volume 0.05-",
+    "restart-interval": 1
+  },
+  "custom/clipboard": {
+    "format": "<span foreground='#ff0055'>󰅇</span>",
+    "interval": "once",
+    "return-type": "json",
+    "exec": "echo '{\"text\": \"\", \"tooltip\": \"Clipboard Manager\"}'",
+    "on-click": "~/.config/waybar/scripts/clipboard-manager.sh",
+    "on-click-right": "~/.config/waybar/scripts/clipboard-clear.sh",
+    "signal": 8
+  },
+  "custom/power": {
+    "format": "<span foreground='#ff0055'>󰐥</span>",
+    "on-click": "~/.config/waybar/scripts/power.sh",
+    "tooltip-format": "Power Menu"
+  },
+  "custom/discord": {
+    "format": "<span foreground='#7289da'>󰙯</span>",
+    "interval": 5,
+    "exec": "pgrep -x discord > /dev/null && echo '{\"text\": \"\", \"class\": \"active\", \"tooltip\": \"Discord is running\"}' || echo '{\"text\": \"\", \"class\": \"inactive\", \"tooltip\": \"Discord is not running\"}'",
+    "return-type": "json",
+    "on-click": "discord || (pgrep -x discord > /dev/null && hyprctl dispatch focuswindow discord)",
+    "tooltip-format": "{}"
+  },
+  "custom/updates": {
+    "format": "<span foreground='#ffaa00'>󰚰</span> {}",
+    "interval": 3600,
+    "exec": "~/.config/waybar/scripts/check-updates.sh",
+    "exec-if": "command -v checkupdates || command -v pacman",
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/update-system.sh",
+    "signal": 9
+  }
+}

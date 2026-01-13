@@ -1,0 +1,175 @@
+/**
+ * Crimson Nexus - Cyberpunk Rofi Theme
+ * Elegant design with proper Rofi syntax
+ */
+
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    font: "JetBrainsMono Nerd Font 11";
+    drun-display-format: "{name}";
+    window-format: "{w} · {c} · {t}";
+    
+    kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+j";
+    kb-accept-entry: "Return,KP_Enter";
+    kb-remove-to-eol: "";
+    
+    /* Disable mouse hover select */
+    hover-select: false;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+
+* {
+    /* Colors */
+    bg: #0A0A0FF2;
+    bg-alt: #15151FF2;
+    fg: #E0E0E0FF;
+    fg-alt: #AAAAAAFF;
+    accent: #FF0055FF;
+    accent-alt: #00E6E6FF;
+    urgent: #BD00FFFF;
+    
+    background-color: transparent;
+    text-color: @fg;
+    
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+    
+    /* Design */
+    border-radius: 0;
+    border-width: 1px;
+    
+    /* Text */
+    font-size: 11px;
+    
+    /* Icons */
+    icon-size: 24px;
+}
+
+window {
+    transparency: "real";
+    background-color: @bg;
+    border-color: @accent;
+    border: @border-width;
+    width: 45%;
+    x-offset: 0;
+    y-offset: 0;
+    
+    /* Add a subtle glow effect */
+    border-color: @accent;
+}
+
+mainbox {
+    children: [ inputbar, message, listview ];
+    spacing: 10px;
+    padding: 15px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    border: 0 0 1px 0 solid;
+    border-color: @accent;
+    padding: 8px 12px;
+    spacing: 10px;
+    margin: 0 0 10px 0;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @accent;
+    font: "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg;
+    placeholder: "Search...";
+    placeholder-color: @fg-alt;
+    cursor: text;
+}
+
+message {
+    background-color: transparent;
+    border-color: @accent;
+    padding: 5px;
+    margin: 0 0 10px 0;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+listview {
+    background-color: transparent;
+    columns: 1;
+    lines: 10;
+    spacing: 5px;
+    dynamic: true;
+    layout: vertical;
+    scrollbar: true;
+    border: 0;
+}
+
+scrollbar {
+    handle-width: 5px;
+    handle-color: @accent;
+    background-color: @bg-alt;
+}
+
+element {
+    background-color: transparent;
+    padding: 8px 10px;
+    spacing: 10px;
+    cursor: pointer;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element normal.urgent {
+    background-color: @urgent;
+    text-color: @fg;
+}
+
+element normal.active {
+    background-color: @accent-alt;
+    text-color: @bg;
+}
+
+element selected.normal {
+    background-color: @bg-alt;
+    text-color: @accent;
+    border: 0 0 0 1px solid;
+    border-color: @accent;
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @bg;
+}
+
+element selected.active {
+    background-color: @accent-alt;
+    text-color: @bg;
+}
+
+element-icon {
+    background-color: transparent;
+    size: @icon-size;
+    padding: 0 10px 0 0;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}

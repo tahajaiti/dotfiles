@@ -1,0 +1,89 @@
+# Crimson Nexus Mako Configuration
+
+# Base styling
+font=UbuntuMono Nerd Font 11
+format=<span foreground='#FF0055'><b>%a</b></span>\n<span foreground='#FF0055'><b>%s</b></span>\n<span foreground='#FFFFFF'>%b</span>
+sort=-time
+layer=overlay
+anchor=top-right
+width=350
+height=120
+margin=16
+padding=16
+border-size=1
+border-radius=0
+icons=1
+max-icon-size=48
+icon-location=left
+default-timeout=5000
+ignore-timeout=1
+group-by=app-name
+max-visible=3
+
+# Default notification styling
+background-color=#0A0A0FF2
+text-color=#E0E0E0FF
+border-color=#FF00554D
+
+# Normal notifications
+[urgency=normal]
+border-color=#FF00554D
+background-color=#0A0A0FF2
+
+# Critical notifications
+[urgency=high]
+border-color=#FF0055CC
+background-color=#19050AF2
+default-timeout=0
+
+# Low priority notifications
+[urgency=low]
+border-color=#FF005533
+background-color=#0A0A0FE6
+default-timeout=3000
+
+# System notifications
+[app-name=system]
+border-color=#FF005566
+background-color=#0F0F14F2
+
+# Media notifications
+[app-name=spotify]
+border-color=#1DB95499
+background-color=#0A0F0AF2
+
+[app-name=mpv]
+border-color=#BD00FF66
+background-color=#0F0A14F2
+
+# Communication apps
+[app-name=discord]
+border-color=#5865F299
+background-color=#0A0A14F2
+
+[app-name=telegram]
+border-color=#0088CC99
+background-color=#0A0F14F2
+
+# Development notifications
+[app-name=code]
+border-color=#007ACC99
+background-color=#0A0F14F2
+
+[app-name=terminal]
+border-color=#00E6E666
+background-color=#0A0F14F2
+
+# Battery notifications
+[app-name=battery]
+border-color=#00E6E699
+background-color=#0A0F14F2
+
+[app-name=battery urgency=high]
+border-color=#FF0055CC
+background-color=#19050AF2
+
+# Network notifications
+[app-name=NetworkManager]
+border-color=#00E6E699
+background-color=#0A0F14F2

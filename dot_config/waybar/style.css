@@ -1,0 +1,392 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "UbuntuMono Nerd Font", "Iosevka Nerd Font", monospace;
+  font-size: 13px;
+  min-height: 0;
+  font-weight: 500;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+window#waybar {
+  background: rgba(10, 10, 15, 0.85);
+  color: #e0e0e0;
+  border-bottom: 1px solid rgba(255, 0, 85, 0.15);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5), 0 0 3px rgba(255, 0, 85, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Left modules */
+#workspaces {
+  padding: 0 12px;
+  margin: 0;
+  background: linear-gradient(90deg, rgba(10, 10, 15, 0) 0%, rgba(255, 0, 85, 0.03) 100%);
+}
+
+#workspaces button {
+  padding: 0 6px;
+  margin: 0 2px;
+  background: transparent;
+  color: #666666;
+  font-weight: 600;
+  min-width: 18px;
+  font-size: 12px;
+  transition: all 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  border-left: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+
+#workspaces button:hover {
+  color: #ff0055;
+  background: rgba(255, 0, 85, 0.05);
+  border-bottom: 1px solid rgba(255, 0, 85, 0.2);
+}
+
+#workspaces button.active {
+  color: #ff0055;
+  background: rgba(255, 0, 85, 0.07);
+  border-left: 1px solid #ff0055;
+  border-bottom: 2px solid #ff0055;
+  box-shadow: 0 0 4px rgba(255, 0, 85, 0.3);
+  animation: workspaceActive 2s infinite alternate;
+}
+
+@keyframes workspaceActive {
+  from {
+    border-bottom-color: rgba(255, 0, 85, 1);
+    box-shadow: 0 0 4px rgba(255, 0, 85, 0.3);
+  }
+  to {
+    border-bottom-color: rgba(255, 0, 85, 0.7);
+    box-shadow: 0 0 8px rgba(255, 0, 85, 0.5);
+  }
+}
+
+#workspaces button.urgent {
+  color: #ff0055;
+  background: rgba(255, 0, 85, 0.1);
+  border-left: 1px solid #ff0055;
+  border-bottom: 1px solid #ff0055;
+  box-shadow: 0 0 6px rgba(255, 0, 85, 0.4);
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 4px rgba(255, 0, 85, 0.3);
+  }
+  to {
+    box-shadow: 0 0 8px rgba(255, 0, 85, 0.5);
+  }
+}
+
+#submap {
+  padding: 0 12px;
+  margin: 0;
+  color: #cccccc;
+  font-weight: 400;
+  font-size: 12px;
+  background: linear-gradient(90deg, rgba(255, 170, 0, 0.03) 0%, rgba(10, 10, 15, 0) 100%);
+  transition: all 0.2s ease;
+}
+
+#submap:hover {
+  background: rgba(255, 170, 0, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 170, 0, 0.4);
+  text-shadow: 0 0 3px rgba(255, 170, 0, 0.3);
+}
+
+#window {
+  padding: 0 16px;
+  margin: 0;
+  color: #cccccc;
+  font-weight: 500;
+  font-size: 12px;
+  background: linear-gradient(90deg, rgba(255, 0, 85, 0.03) 0%, rgba(10, 10, 15, 0) 50%, rgba(255, 0, 85, 0.03) 100%);
+}
+
+/* Center module */
+#custom-media {
+  padding: 0 16px;
+  margin: 0;
+  color: #cccccc;
+  font-weight: 400;
+  font-size: 12px;
+  background: linear-gradient(90deg, rgba(29, 185, 84, 0.05) 0%, rgba(10, 10, 15, 0) 100%);
+  border-right: 1px solid rgba(29, 185, 84, 0.2);
+  transition: all 0.2s ease;
+}
+
+#custom-media:hover {
+  background: rgba(29, 185, 84, 0.07);
+  box-shadow: inset 0 -2px 0 rgba(29, 185, 84, 0.4);
+  text-shadow: 0 0 3px rgba(29, 185, 84, 0.3);
+}
+
+/* Discord module styling */
+#custom-discord {
+  padding: 0 12px;
+  margin: 0;
+  color: #cccccc;
+  font-weight: 400;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  background: linear-gradient(90deg, rgba(114, 137, 218, 0.03) 0%, rgba(10, 10, 15, 0) 100%);
+}
+
+#custom-discord:hover {
+  background: rgba(114, 137, 218, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(114, 137, 218, 0.4);
+  text-shadow: 0 0 3px rgba(114, 137, 218, 0.3);
+}
+
+#custom-discord.active {
+  color: #7289da;
+  background: rgba(114, 137, 218, 0.07);
+  box-shadow: inset 0 -2px 0 rgba(114, 137, 218, 0.4);
+  border-right: 1px solid rgba(114, 137, 218, 0.2);
+}
+
+#custom-discord.inactive {
+  color: #666666;
+  background: rgba(102, 102, 102, 0.03);
+}
+
+/* Right modules */
+#custom-clipboard,
+#network,
+#network-speed,
+#bluetooth,
+#pulseaudio,
+#battery,
+#memory,
+#disk,
+#custom-power,
+#clock,
+#updates {
+  padding: 0 10px;
+  margin: 0;
+  color: #cccccc;
+  font-weight: 400;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+#custom-clipboard:hover,
+#network:hover,
+#network-speed:hover,
+#bluetooth:hover,
+#memory:hover,
+#pulseaudio:hover,
+#battery:hover,
+#disk:hover,
+#updates:hover,
+#custom-power:hover {
+  background: rgba(255, 0, 85, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.4);
+  text-shadow: 0 0 3px rgba(255, 0, 85, 0.3);
+}
+
+#network-speed {
+  padding: 0 10px;
+  margin: 0;
+  color: #cccccc;
+  font-weight: 400;
+  font-size: 12px;
+  background: linear-gradient(90deg, rgba(255, 0, 85, 0.03) 0%, rgba(10, 10, 15, 0) 100%);
+  transition: all 0.2s ease;
+}
+
+#network-speed:hover {
+  background: rgba(255, 0, 85, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.4);
+  text-shadow: 0 0 3px rgba(255, 0, 85, 0.3);
+}
+
+#memory.warning {
+  color: #ffcc00;
+  background: rgba(255, 204, 0, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 204, 0, 0.4);
+}
+
+#memory.critical {
+  color: #ff0055;
+  background: rgba(255, 0, 85, 0.1);
+  animation: blink 1s ease-in-out infinite alternate;
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.6);
+}
+
+#disk {
+  padding: 0 10px;
+  margin: 0;
+  color: #cccccc;
+  font-weight: 400;
+  font-size: 12px;
+  background: linear-gradient(90deg, rgba(255, 170, 0, 0.03) 0%, rgba(10, 10, 15, 0) 100%);
+  transition: all 0.2s ease;
+}
+
+#disk:hover {
+  background: rgba(255, 170, 0, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 170, 0, 0.4);
+  text-shadow: 0 0 3px rgba(255, 170, 0, 0.3);
+}
+
+#disk.warning {
+  color: #ffcc00;
+  background: rgba(255, 204, 0, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 204, 0, 0.4);
+}
+
+#disk.critical {
+  color: #ff0055;
+  background: rgba(255, 0, 85, 0.1);
+  animation: blink 1s ease-in-out infinite alternate;
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.6);
+}
+
+#clock {
+  padding: 0 14px;
+  color: #e0e0e0;
+  font-weight: 600;
+  background: linear-gradient(90deg, rgba(255, 0, 85, 0.03) 0%, rgba(255, 0, 85, 0.1) 100%);
+  border-left: 1px solid rgba(255, 0, 85, 0.2);
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.4);
+}
+
+/* Module-specific styling */
+#battery.charging {
+  color: #00e6e6;
+  background: rgba(0, 230, 230, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(0, 230, 230, 0.4);
+}
+
+#battery.warning {
+  color: #ffcc00;
+  background: rgba(255, 204, 0, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 204, 0, 0.4);
+}
+
+#battery.critical:not(.charging) {
+  color: #ff0055;
+  background: rgba(255, 0, 85, 0.1);
+  animation: blink 1s ease-in-out infinite alternate;
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.6);
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+    box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.6), 0 0 5px rgba(255, 0, 85, 0.3);
+  }
+  to {
+    opacity: 0.8;
+    box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.6), 0 0 10px rgba(255, 0, 85, 0.6);
+  }
+}
+
+#network.disconnected {
+  color: #ff0055;
+  background: rgba(255, 0, 85, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.4);
+}
+
+#pulseaudio.muted {
+  color: #666666;
+  background: rgba(102, 102, 102, 0.05);
+}
+
+#pulseaudio.source-muted {
+  color: #666666;
+  background: rgba(102, 102, 102, 0.05);
+}
+
+#custom-clipboard {
+  color: #e0e0e0;
+  background: rgba(255, 0, 85, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.4);
+}
+
+#custom-power {
+  color: #e0e0e0;
+  background: rgba(255, 0, 85, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 0, 85, 0.4);
+}
+
+#bluetooth.connected {
+  color: #bd00ff;
+  background: rgba(189, 0, 255, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(189, 0, 255, 0.4);
+}
+
+#bluetooth.disabled {
+  color: #666666;
+}
+
+#bluetooth.off {
+  color: #666666;
+  background: rgba(102, 102, 102, 0.05);
+}
+
+#updates {
+  padding: 0 10px;
+  margin: 0;
+  color: #cccccc;
+  font-weight: 400;
+  font-size: 12px;
+  background: linear-gradient(90deg, rgba(255, 170, 0, 0.03) 0%, rgba(10, 10, 15, 0) 100%);
+  transition: all 0.2s ease;
+}
+
+#updates:hover {
+  background: rgba(255, 170, 0, 0.05);
+  box-shadow: inset 0 -2px 0 rgba(255, 170, 0, 0.4);
+  text-shadow: 0 0 3px rgba(255, 170, 0, 0.3);
+}
+
+/* Tooltips */
+tooltip {
+  background: rgba(15, 15, 20, 0.95);
+  color: #e0e0e0;
+  font-size: 11px;
+  padding: 8px 12px;
+  font-weight: 400;
+  border: 1px solid rgba(255, 0, 85, 0.2);
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 5px rgba(255, 0, 85, 0.1);
+}
+
+tooltip label {
+  color: #e0e0e0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#workspaces,
+#submap,
+#window,
+#custom-media,
+#custom-discord,
+#custom-clipboard,
+#network,
+#network-speed,
+#bluetooth,
+#pulseaudio,
+#battery,
+#memory,
+#disk,
+#custom-power,
+#updates,
+#clock {
+  animation: fadeIn 0.3s ease-out;
+}
+
+

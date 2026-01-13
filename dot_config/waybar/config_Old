@@ -1,0 +1,206 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "width": 1920,
+  "spacing": 2,
+  "margin-top": 0,
+  "margin-left": 16,
+  "margin-right": 16,
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/spotify"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "custom/discord",
+    "custom/clipboard",
+    "network#speed",
+    "memory",
+    "bluetooth",
+    "network",
+    "pulseaudio",
+    "battery",
+    "clock",
+    "custom/power"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "active": "•",
+      "default": "◦"
+    },
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "1": []
+    },
+    "all-outputs": true
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 50,
+    "icon": true,
+    "separate-outputs": true,
+    "rewrite": {
+      "": "TERMINAL:// ~"
+    },
+    "on-click": "makoctl dismiss -a",
+    "on-click-right": "makoctl restore",
+    "tooltip-format": "Click to dismiss notifications\nRight-click to restore dismissed notifications"
+  },
+  "clock": {
+    "format": "<span foreground='#ff0055'>󰥔</span> {:%H:%M %a %d %B}",
+    "format-alt": "<span foreground='#ff0055'>󰃭</span> {:%H:%M:%S %A %d %B}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "interval": 60,
+    "on-click": "gnome-calendar"
+  },
+  "battery": {
+    "bat": "BAT0",
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span foreground='#bd00ff'>{icon}</span> {capacity}%",
+    "format-charging": "<span foreground='#00e6e6'>󰂄</span> {capacity}%",
+    "format-plugged": "<span foreground='#00e6e6'>󰚥</span> {capacity}%",
+    "format-alt": "<span foreground='#bd00ff'>{icon}</span> {time}",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "{capacity}% • {time} remaining • {power}W",
+    "interval": 30
+  },
+  "network": {
+    "format-wifi": "<span foreground='#00e6e6'>󰖩</span> {signalStrength}%",
+    "format-ethernet": "<span foreground='#00e6e6'>󰈀</span> connected",
+    "format-disconnected": "<span foreground='#ff0055'>󰖪</span> offline",
+    "format-linked": "<span foreground='#ffaa00'>󰈁</span> linked",
+    "tooltip-format-wifi": "{essid} • {signalStrength}% • {ipaddr}/{cidr}",
+    "tooltip-format-ethernet": "{ifname} • {ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "Network disconnected",
+    "interval": 10,
+    "on-click": "~/.config/waybar/scripts/wifi-menu.sh",
+    "on-click-right": "nm-connection-editor"
+  },
+  "network#speed": {
+    "format-wifi": "<span foreground='#ff0055'>󰇚</span> {bandwidthDownBytes}",
+    "format-ethernet": "<span foreground='#ff0055'>󰇚</span> {bandwidthDownBytes}",
+    "format-disconnected": "",
+    "tooltip-format": "↓ {bandwidthDownBytes} • ↑ {bandwidthUpBytes}",
+    "interval": 1,
+    "min-length": 8
+  },
+  "memory": {
+    "interval": 5,
+    "format": "<span foreground='#bd00ff'>󰍛</span> {percentage}%",
+    "format-alt": "<span foreground='#bd00ff'>󰘚</span> {used:0.1f}GB",
+    "tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB ({percentage}%)\nSwap: {swapUsed:0.1f}GB / {swapTotal:0.1f}GB",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  "bluetooth": {
+    "format": "<span foreground='#00e6e6'>{icon}</span>",
+    "format-disabled": "<span foreground='#666666'>󰂲</span>",
+    "format-connected": "<span foreground='#bd00ff'>{icon}</span> {device_alias}",
+    "format-connected-battery": "<span foreground='#bd00ff'>{icon}</span> {device_alias} {device_battery_percentage}%",
+    "format-icons": {
+      "enabled": "󰂯",
+      "disabled": "󰂲",
+      "connected": "󰂱"
+    },
+    "tooltip-format": "{controller_alias} • {status}\n{num_connections} device(s) connected",
+    "tooltip-format-connected": "{controller_alias} • {status}\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "blueman-manager"
+  },
+  "pulseaudio": {
+    "format": "<span foreground='#bd00ff'>{icon}</span> {volume}%",
+    "format-muted": "<span foreground='#666666'>󰝟</span> muted",
+    "format-bluetooth": "<span foreground='#00e6e6'>{icon}</span> {volume}%",
+    "format-bluetooth-muted": "<span foreground='#666666'>󰟎</span> muted",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󱡏",
+      "headset": "󰋎",
+      "phone": "󰏲",
+      "portable": "󰦧",
+      "car": "󰄋",
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+    "tooltip-format": "Volume: {volume}%\nDevice: {desc}"
+  },
+  "custom/spotify": {
+    "format": "<span foreground='#1db954'>󰓇</span> {}",
+    "max-length": 50,
+    "interval": 2,
+    "exec": "playerctl -p spotify metadata --format '{{ artist }} — {{ title }}' | sed -e 's/&/\\&amp;/g' -e 's/</\\&lt;/g' -e 's/>/\\&gt;/g' -e 's/\"/\\&quot;/g' -e \"s/'/\\&apos;/g\"",
+    "exec-if": "pgrep spotify",
+    "escape": true,
+    "on-click": "playerctl -p spotify play-pause",
+    "on-click-right": "playerctl -p spotify next",
+    "on-click-middle": "playerctl -p spotify previous",
+    "on-scroll-up": "playerctl -p spotify volume 0.02+",
+    "on-scroll-down": "playerctl -p spotify volume 0.02-",
+    "tooltip-format": "Spotify: {} • Click: play/pause • Right: next • Middle: previous • Scroll: volume"
+  },
+  "custom/clipboard": {
+    "format": "<span foreground='#ff0055'>󰅇</span>",
+    "interval": 1,
+    "return-type": "json",
+    "exec": "echo '{\"text\":\"\", \"tooltip\":\"Clipboard Manager\"}'",
+    "on-click": "cliphist list | rofi -theme ~/.config/rofi/clipboard.rasi -dmenu | cliphist decode | wl-copy",
+    "on-click-right": "cliphist wipe && notify-send 'Clipboard' 'History cleared'",
+    "tooltip-format": "Clipboard Manager • Click: show history • Right-click: clear history"
+  },
+  "custom/power": {
+    "format": "<span foreground='#ff0055'>󰐥</span>",
+    "on-click": "~/.config/waybar/scripts/power.sh",
+    "tooltip-format": "Power Menu"
+  },
+  "custom/discord": {
+    "format": "<span foreground='#7289da'>󰙯</span>",
+    "interval": 5,
+    "exec": "pgrep -x discord > /dev/null && echo '{\"text\":\"\", \"class\":\"active\", \"tooltip\":\"Discord is running\"}' || echo '{\"text\":\"\", \"class\":\"inactive\", \"tooltip\":\"Discord is not running\"}'",
+    "return-type": "json",
+    "on-click": "discord || (pgrep -x discord > /dev/null && hyprctl dispatch focuswindow discord)",
+    "tooltip-format": "{}"
+  }
+}
